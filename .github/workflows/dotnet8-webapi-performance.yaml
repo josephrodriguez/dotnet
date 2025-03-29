@@ -13,18 +13,20 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     strategy:
       matrix:
         release:
           - platform: linux/amd64, linux/arm64
+            runner: ubuntu-latest
             build-args:
               - APP_UID=0
               - PORT=80
           - platform: linux/amd64, linux/arm64
+            runner: ubuntu-latest
             build-args:
               - APP_UID=1000
               - PORT=8080
+    runs-on: ${{ matrix.release.runner }}
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
