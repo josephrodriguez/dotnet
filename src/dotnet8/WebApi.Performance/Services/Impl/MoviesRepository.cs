@@ -1,6 +1,6 @@
-using PerformanceNonRootPort.Models;
+using WebApi.Performance.Models;
 
-namespace PerformanceNonRootPort.Services.Impl;
+namespace WebApi.Performance.Services.Impl;
 
 internal class MoviesRepository : IMoviesRepository
 {

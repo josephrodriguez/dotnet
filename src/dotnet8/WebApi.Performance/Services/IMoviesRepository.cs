@@ -1,6 +1,6 @@
-using PerformanceNonRootPort.Models;
+using WebApi.Performance.Models;
 
-namespace PerformanceNonRootPort.Services;
+namespace WebApi.Performance.Services;
 
 public interface IMoviesRepository
 {

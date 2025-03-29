@@ -1,4 +1,4 @@
-namespace PerformanceNonRootPort.Models;
+namespace WebApi.Performance.Models;
 
 public class Movie
 {
