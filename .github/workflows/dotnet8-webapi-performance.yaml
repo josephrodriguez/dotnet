@@ -16,13 +16,15 @@ jobs:
           - platform: linux/amd64, linux/arm64
             runner: ubuntu-latest
             build-args:
-              - APP_UID=0
-              - PORT=80
+              user: 0
+              port: 80
+            build-tag: root              
           - platform: linux/amd64, linux/arm64
             runner: ubuntu-latest
             build-args:
-              - APP_UID=1000
-              - PORT=8080
+              user: 1000
+              port: 8080
+            build-tag: non-root
     runs-on: ${{ matrix.release.runner }}
     permissions:
       contents: read
@@ -45,13 +47,15 @@ jobs:
         id: metadata
         uses: docker/metadata-action@v5
         with:
-          images: ${{ github.repository }}
-          tags: type=raw,value={{date 'YYYYMMDDHHmm'}}-{{sha}}
+          images: ghcr.io/${{ github.repository }}/dotnet8-webapi-performance
+          tags: type=raw,value=${{ matrix.release.build-tag }}-{{date 'YYYYMMDDHHmm'}}-{{sha}}
             
       - name: Build and push docker image
         uses: docker/build-push-action@v6
         with:
-          build-args: ${{ matrix.release.build-args }}
+          build-args: |
+            APP_UID= ${{ matrix.release.build-args.user }}
+            PORT=${{ matrix.release.build-args.port }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           file: src/WebApi.Performance/Dockerfile
