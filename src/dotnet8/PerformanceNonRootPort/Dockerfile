@@ -6,17 +6,18 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/dotnet8/performance-non-root-port-8080/performance-non-root-port-8080.csproj", "src/dotnet8/performance-non-root-port-8080/"]
-RUN dotnet restore "src/dotnet8/performance-non-root-port-8080/performance-non-root-port-8080.csproj"
+COPY ["src/dotnet8/PerformanceNonRootPort/PerformanceNonRootPort.csproj", "src/dotnet8/PerformanceNonRootPort/"]
+RUN dotnet restore "src/dotnet8/PerformanceNonRootPort/PerformanceNonRootPort.csproj"
 COPY . .
-WORKDIR "/src/src/dotnet8/performance-non-root-port-8080"
-RUN dotnet build "performance-non-root-port-8080.csproj" -c $BUILD_CONFIGURATION -o /app/build /p:DebugType=None /p:DebugSymbols=false
+WORKDIR "/src/src/dotnet8/PerformanceNonRootPort"
+RUN dotnet build "PerformanceNonRootPort.csproj" -c $BUILD_CONFIGURATION -o /app/build /p:DebugType=None /p:DebugSymbols=false
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "performance-non-root-port-8080.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "PerformanceNonRootPort.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
+ENV ASPNETCORE_HTTP_PORTS=8080
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "performance-non-root-port-8080.dll"]
+ENTRYPOINT ["dotnet", "PerformanceNonRootPort.dll"]
