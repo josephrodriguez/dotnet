@@ -66,4 +66,11 @@ jobs:
           sbom: true
           push: true
           tags: ${{ steps.metadata.outputs.tags }}
-          labels: ${{ steps.metadata.outputs.labels }}            
+          labels: ${{ steps.metadata.outputs.labels }}
+            
+  dependabot:
+    needs: [ build ]
+    permissions: write-all
+    uses: josephrodriguez/github-workflow/.github/workflows/dependabot-merge-pull-request.yaml@main
+    secrets:
+      AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}                 
