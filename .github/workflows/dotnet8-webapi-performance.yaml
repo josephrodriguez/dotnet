@@ -1,0 +1,19 @@
+name: dotnet8 WebApi Performance
+
+on:
+  push:
+    paths:
+      - 'src/dotnet8/WebApi.Performance/**'
+  pull_request:
+    paths:
+      - 'src/dotnet8/WebApi.Performance/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        variant: ['non-root-8080', 'root-80']  # Define variants for parallel execution
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
