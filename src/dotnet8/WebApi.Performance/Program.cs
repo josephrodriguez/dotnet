@@ -1,3 +1,4 @@
+using WebApi.Performance.Extensions;
 using WebApi.Performance.Services;
 using WebApi.Performance.Services.Impl;
 
@@ -8,6 +9,7 @@ builder.Logging.AddConsole();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+builder.Services.AddHealthChecks();
 
 builder.Services.AddScoped<IMoviesRepository, MoviesRepository>();
 
@@ -21,5 +23,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseRouting();
 app.MapControllers();
+app.MapHealthz();
 
 app.Run();
