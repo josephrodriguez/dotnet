@@ -1,3 +1,4 @@
+using Prometheus;
 using WebApi.Performance.Extensions;
 using WebApi.Performance.Services;
 using WebApi.Performance.Services.Impl;
@@ -22,7 +23,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
+app.UseHttpMetrics(); 
+
 app.MapControllers();
+app.MapMetrics();
 app.MapHealthz();
 
 app.Run();
