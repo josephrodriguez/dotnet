@@ -1,7 +1,7 @@
 ﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0-noble-chiseled AS base
+USER $APP_UID
 WORKDIR /app
-ARG APP_UID=1654
-ARG PORT=8080
+EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
@@ -10,17 +10,14 @@ COPY ["src/dotnet8/WebApi.Performance/WebApi.Performance.csproj", "src/dotnet8/W
 RUN dotnet restore "src/dotnet8/WebApi.Performance/WebApi.Performance.csproj"
 COPY . .
 WORKDIR "/src/src/dotnet8/WebApi.Performance"
-RUN dotnet build "WebApi.Performance.csproj" -c $BUILD_CONFIGURATION -o /app/build /p:DebugType=None /p:DebugSymbols=false
+RUN dotnet build "WebApi.Performance.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "WebApi.Performance.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "WebApi.Performance.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false /p:DebugType=None /p:DebugSymbols=false
 
 FROM base AS final
-USER $APP_UID
-EXPOSE $PORT
-
-ENV ASPNETCORE_HTTP_PORTS=$PORT
+ENV ASPNETCORE_HTTP_PORTS=8080
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "WebApi.Performance.dll"]
