@@ -58,7 +58,7 @@ jobs:
             PORT=${{ matrix.release.build-args.port }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          file: src/WebApi.Performance/Dockerfile
+          file: src/dotnet8/WebApi.Performance/Dockerfile
           platforms: ${{ matrix.release.platform }}
           provenance: mode=max
           sbom: true
