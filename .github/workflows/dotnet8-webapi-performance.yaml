@@ -2,9 +2,6 @@ name: dotnet8 WebApi Performance
 
 on:
   push:
-    branches: 
-      - 'feature/*'
-      - 'fix/*'
     paths:
       - 'src/dotnet8/WebApi.Performance/**'
   pull_request:
@@ -27,6 +24,9 @@ jobs:
               - APP_UID=1000
               - PORT=8080
     runs-on: ${{ matrix.release.runner }}
+    permissions:
+      contents: read
+      packages: write    
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
@@ -37,8 +37,9 @@ jobs:
       - name: Log in to DockerHub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
-          password: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}     
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}   
             
       - name: Docker metadata
         id: metadata
