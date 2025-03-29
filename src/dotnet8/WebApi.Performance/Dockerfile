@@ -1,10 +1,7 @@
 ﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0-noble-chiseled AS base
-ARG APP_UID=1000
-ARG PORT=8080
-
-USER $APP_UID
 WORKDIR /app
-EXPOSE $PORT
+ARG APP_UID=1654
+ARG PORT=8080
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
@@ -20,6 +17,9 @@ ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "WebApi.Performance.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
+USER $APP_UID
+EXPOSE $PORT
+
 ENV ASPNETCORE_HTTP_PORTS=$PORT
 WORKDIR /app
 COPY --from=publish /app/publish .
