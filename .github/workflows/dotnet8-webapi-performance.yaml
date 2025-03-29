@@ -1,4 +1,4 @@
-name: dotnet8 WebApi Performance
+name: dotnet8 webapi performance
 
 on:
   push:
@@ -18,13 +18,13 @@ jobs:
             build-args:
               user: 0
               port: 80
-            build-tag: root              
+            image-name: root              
           - platform: linux/amd64, linux/arm64
             runner: ubuntu-latest
             build-args:
               user: 1000
               port: 8080
-            build-tag: non-root
+            image-name: non-root
     runs-on: ${{ matrix.release.runner }}
     permissions:
       contents: read
@@ -47,8 +47,9 @@ jobs:
         id: metadata
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/${{ github.repository }}/dotnet8-webapi-performance
-          tags: type=raw,value=${{ matrix.release.build-tag }}-{{date 'YYYYMMDDHHmm'}}-{{sha}}
+          images: ghcr.io/${{ github.repository }}/dotnet8-webapi-performance-${{ matrix.release.image-name }}
+          tags: |
+            type=raw,value={{date 'YYYYMMDDHHmm'}}-{{sha}}
             
       - name: Build and push docker image
         uses: docker/build-push-action@v6

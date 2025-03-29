@@ -19,8 +19,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// app.UseHttpsRedirection(); // Let's disable SSL redirection middleware
-
 app.UseRouting();
 app.MapControllers();
 

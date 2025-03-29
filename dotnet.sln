@@ -13,6 +13,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.Performance", "src\dotnet8\WebApi.Performance\WebApi.Performance.csproj", "{213FD0E4-E422-47D7-8223-C225CAC62EC7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{36CB6102-EF23-4668-B678-1F2847701E16}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yaml = .github\dependabot.yaml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{24988FE5-9214-43F3-ADE2-FCEA1FF827E1}"
 	ProjectSection(SolutionItems) = preProject
