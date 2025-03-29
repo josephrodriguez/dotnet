@@ -10,11 +10,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet6", "dotnet6", "{844B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet10", "dotnet10", "{FE258F5C-5310-422E-9A03-322130CE40B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.Performance", "src\dotnet8\WebApi.Performance\WebApi.Performance.csproj", "{213FD0E4-E422-47D7-8223-C225CAC62EC7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{36CB6102-EF23-4668-B678-1F2847701E16}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yaml = .github\dependabot.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{24988FE5-9214-43F3-ADE2-FCEA1FF827E1}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet8-webapi-performance.yaml = .github\workflows\dotnet8-webapi-performance.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{213FD0E4-E422-47D7-8223-C225CAC62EC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{213FD0E4-E422-47D7-8223-C225CAC62EC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{213FD0E4-E422-47D7-8223-C225CAC62EC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{213FD0E4-E422-47D7-8223-C225CAC62EC7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{213FD0E4-E422-47D7-8223-C225CAC62EC7} = {38DB6224-13D4-4D2E-AACB-D0D1385C9697}
+		{24988FE5-9214-43F3-ADE2-FCEA1FF827E1} = {36CB6102-EF23-4668-B678-1F2847701E16}
 	EndGlobalSection
 EndGlobal

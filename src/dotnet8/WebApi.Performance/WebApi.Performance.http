@@ -1,0 +1,6 @@
+@PerformanceNonRootPort_8080_HostAddress = http://localhost:5292
+
+GET {{PerformanceNonRootPort_8080_HostAddress}}/Movies/
+Accept: application/json
+
+###
