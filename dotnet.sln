@@ -10,11 +10,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet6", "dotnet6", "{844B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet10", "dotnet10", "{FE258F5C-5310-422E-9A03-322130CE40B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "performance-non-root-port-8080", "src\dotnet8\performance-non-root-port-8080\performance-non-root-port-8080.csproj", "{213FD0E4-E422-47D7-8223-C225CAC62EC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{213FD0E4-E422-47D7-8223-C225CAC62EC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{213FD0E4-E422-47D7-8223-C225CAC62EC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{213FD0E4-E422-47D7-8223-C225CAC62EC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{213FD0E4-E422-47D7-8223-C225CAC62EC7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{213FD0E4-E422-47D7-8223-C225CAC62EC7} = {38DB6224-13D4-4D2E-AACB-D0D1385C9697}
 	EndGlobalSection
 EndGlobal

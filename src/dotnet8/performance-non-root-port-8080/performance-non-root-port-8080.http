@@ -1,0 +1,6 @@
+@performance_non_root_port_8080_HostAddress = http://localhost:5292
+
+GET {{performance_non_root_port_8080_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
