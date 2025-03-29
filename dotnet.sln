@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet6", "dotnet6", "{844B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet10", "dotnet10", "{FE258F5C-5310-422E-9A03-322130CE40B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "performance-non-root-port-8080", "src\dotnet8\performance-non-root-port-8080\performance-non-root-port-8080.csproj", "{213FD0E4-E422-47D7-8223-C225CAC62EC7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerformanceNonRootPort", "src\dotnet8\PerformanceNonRootPort\PerformanceNonRootPort.csproj", "{213FD0E4-E422-47D7-8223-C225CAC62EC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,8 +1,7 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0-noble-chiseled AS base
 USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
-EXPOSE 8081
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
@@ -11,7 +10,7 @@ COPY ["src/dotnet8/performance-non-root-port-8080/performance-non-root-port-8080
 RUN dotnet restore "src/dotnet8/performance-non-root-port-8080/performance-non-root-port-8080.csproj"
 COPY . .
 WORKDIR "/src/src/dotnet8/performance-non-root-port-8080"
-RUN dotnet build "performance-non-root-port-8080.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "performance-non-root-port-8080.csproj" -c $BUILD_CONFIGURATION -o /app/build /p:DebugType=None /p:DebugSymbols=false
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
