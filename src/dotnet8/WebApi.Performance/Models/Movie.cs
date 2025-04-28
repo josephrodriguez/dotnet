@@ -1,13 +1,15 @@
+using System.Text.Json.Serialization;
+
 namespace WebApi.Performance.Models;
 
 public class Movie
 {
-    public string Title { get; set; }
-    public string Director { get; set; }
-    public double Rating { get; set; }
-    public int Rank { get; set; }
-    public string Synopsis { get; set; }
-    public string Genre { get; set; }
-    public int ReleaseYear { get; set; }
-    public string Cast { get; set; }
+    [JsonPropertyName("title")] public string Title { get; set; }
+    [JsonPropertyName("director")] public string Director { get; set; }
+    [JsonPropertyName("rating")] public double Rating { get; set; }
+    [JsonPropertyName("rank")] public int Rank { get; set; }
+    [JsonPropertyName("synopsis")] public string Synopsis { get; set; }
+    [JsonPropertyName("genre")] public string Genre { get; set; }
+    [JsonPropertyName("release_year")] public int ReleaseYear { get; set; }
+    [JsonPropertyName("cast")] public string Cast { get; set; }
 }
