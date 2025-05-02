@@ -5,17 +5,18 @@ using WebApi.Performance.Services;
 namespace WebApi.Performance.Controllers;
 
 [ApiController]
-[Route("[controller]")]
-public class MoviesController(IMoviesRepository repository, ILogger<MoviesController> logger) : ControllerBase
+[Route("api/[controller]")]
+public class PerformanceController(IMoviesRepository repository, ILogger<PerformanceController> logger) : ControllerBase
 {
     [HttpGet]
-    public async Task<IActionResult> Get()
+    [Route("movies")]
+    public async Task<IActionResult> GetMovies(CancellationToken cancellationToken = default)
     {
         try
         {
             logger.LogInformation("Handling request for GET movies endpoint.");
             
-            var movies = await repository.GetMoviesAsync();
+            var movies = await repository.GetMoviesAsync(cancellationToken);
             
             return Ok(movies);
         }
@@ -23,7 +24,7 @@ public class MoviesController(IMoviesRepository repository, ILogger<MoviesContro
         {
             logger.LogError(ex, "An error occurred while fetching movies.");
             
-            return StatusCode((int) HttpStatusCode.InternalServerError, "An error occurred while processing your request.");
+            return Problem(title: ex.Message, statusCode: (int) HttpStatusCode.InternalServerError);
         }
     }
 }

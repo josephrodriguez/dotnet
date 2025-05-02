@@ -9,10 +9,11 @@ builder.Logging.AddConsole();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddMvcCore().AddApiExplorer();
 builder.Services.AddControllers();
 builder.Services.AddHealthChecks();
 
-builder.Services.AddScoped<IMoviesRepository, MoviesRepository>();
+builder.Services.AddJsonFileMoviesRepository(builder.Configuration);
 
 var app = builder.Build();
 

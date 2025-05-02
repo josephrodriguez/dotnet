@@ -42,7 +42,7 @@ jobs:
         with:
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          file: src/dotnet8/WebApi.Performance/Dockerfile
+          file: src/dotnet8/WebApi.Performance/Dockerfile.clr
           platforms: linux/arm64, linux/amd64
           provenance: mode=max
           sbom: true
