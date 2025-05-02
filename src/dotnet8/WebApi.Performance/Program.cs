@@ -13,7 +13,7 @@ builder.Services.AddMvcCore().AddApiExplorer();
 builder.Services.AddControllers();
 builder.Services.AddHealthChecks();
 
-builder.Services.AddJsonFileMoviesRepository();
+builder.Services.AddJsonFileMoviesRepository(builder.Configuration);
 
 var app = builder.Build();
 
