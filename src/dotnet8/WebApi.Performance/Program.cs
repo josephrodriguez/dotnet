@@ -1,7 +1,5 @@
 using Prometheus;
 using WebApi.Performance.Extensions;
-using WebApi.Performance.Services;
-using WebApi.Performance.Services.Impl;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,6 +1,6 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Performance.Services;
+using WebApi.Performance.Infrastructure;
 
 namespace WebApi.Performance.Controllers;
 

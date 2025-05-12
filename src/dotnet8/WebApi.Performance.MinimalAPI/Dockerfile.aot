@@ -1,0 +1,24 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG RUNTIME_IDENTIFIER
+WORKDIR /src
+COPY . .
+
+RUN apt-get update && apt-get install clang zlib1g-dev -y
+
+RUN dotnet publish -c Release \
+    -o /app/publish \
+    /p:PublishAot=true \
+    /p:SelfContained=true \
+    /p:PublishTrimmed=true \
+    /p:DebugType=None \
+    /p:DebugSymbols=false \
+    /p:RuntimeIdentifier=$RUNTIME_IDENTIFIER
+
+FROM mcr.microsoft.com/dotnet/runtime:8.0 AS final
+USER app
+WORKDIR /app
+COPY --from=build /app/publish .
+ENV ASPNETCORE_URLS=http://+:8080
+EXPOSE 8080
+
+ENTRYPOINT ["./WebApi.Performance.MinimalAPI"]

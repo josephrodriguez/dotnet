@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace WebApi.Performance.Models;
+namespace WebApi.Performance.Core;
 
 public class Movie
 {

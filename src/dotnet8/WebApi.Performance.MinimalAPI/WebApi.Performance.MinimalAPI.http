@@ -1,0 +1,6 @@
+@WebApi.Performance.MinimalAPI_HostAddress = http://localhost:5083
+
+GET {{WebApi.Performance.MinimalAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

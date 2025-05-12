@@ -1,18 +1,13 @@
 using System.Text.Json;
-using Microsoft.Extensions.Options;
-using WebApi.Performance.Configuration;
-using WebApi.Performance.Models;
+using WebApi.Performance.Core;
 
-namespace WebApi.Performance.Services.Impl;
+namespace WebApi.Performance.Infrastructure.Impl;
 
-internal class FileJsonMoviesRepository(IOptions<FileProviderConfiguration> options) : IMoviesRepository
+internal class FileJsonMoviesRepository(string filePath) : IMoviesRepository
 {
-
     public async Task<IEnumerable<Movie>?> GetMoviesAsync(CancellationToken cancellationToken = default)
     {
-        ArgumentNullException.ThrowIfNull(options);
-        
-        var filePath = options.Value.Path;
+        ArgumentNullException.ThrowIfNull(filePath);
         
         if (!File.Exists(filePath))
         {

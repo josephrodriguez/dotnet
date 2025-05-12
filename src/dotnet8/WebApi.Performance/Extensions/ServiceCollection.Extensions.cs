@@ -1,6 +1,5 @@
-using WebApi.Performance.Configuration;
-using WebApi.Performance.Services;
-using WebApi.Performance.Services.Impl;
+using WebApi.Performance.Infrastructure;
+using WebApi.Performance.Infrastructure.Configuration;
 
 namespace WebApi.Performance.Extensions;
 
@@ -8,8 +7,8 @@ internal static class ServiceCollection
 {
     internal static IServiceCollection AddJsonFileMoviesRepository(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped<IMoviesRepository, FileJsonMoviesRepository>();
-        services.AddOptions<FileProviderConfiguration>().Bind(configuration.GetSection("Provider"));
+        services.AddScoped<IMoviesRepository>(_ => 
+            MoviesRepositoryFactory.FromJsonFile(configuration.GetValue<string>("Provider:Path") ?? string.Empty));
 
         return services;
     }

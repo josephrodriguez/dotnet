@@ -1,4 +1,4 @@
-namespace WebApi.Performance.Configuration;
+namespace WebApi.Performance.Infrastructure.Configuration;
 
 public class FileProviderConfiguration
 {
