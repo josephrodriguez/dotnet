@@ -16,9 +16,9 @@ RUN dotnet publish -c Release \
 
 FROM mcr.microsoft.com/dotnet/runtime:9.0 AS final
 USER app
+EXPOSE 8080
 WORKDIR /app
 COPY --from=build /app/publish .
 ENV ASPNETCORE_URLS=http://+:8080
-EXPOSE 8080
 
-ENTRYPOINT ["./WebApi.Performance.MinimalAPI"]
+ENTRYPOINT ["./Dotnet.Performance.WebApi"]
