@@ -1,19 +1,30 @@
 using System.Diagnostics.CodeAnalysis;
+using Dotnet.Performance.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Performance.Infrastructure;
 
-namespace WebApi.Performance.MinimalAPI.Extensions;
+namespace Dotnet.Performance.WebApi.Extensions;
 
 internal static class EndpointRouteBuilderExtensions
 {
     [RequiresDynamicCode("Calls Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet(String, Delegate)")]
     [UnconditionalSuppressMessage("Trimming", "IL2026:Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code", Justification = "<Pending>")]
-    public static IEndpointRouteBuilder MapPerformanceApiEndpoints(this IEndpointRouteBuilder endpoints)
+    public static IEndpointRouteBuilder MapPerformanceEndpoints(this IEndpointRouteBuilder endpoints)
     {
         var performanceApi = endpoints.MapGroup("/api/performance");
 
         performanceApi.MapGet("/movies", async (IMoviesRepository repository, CancellationToken cancellationToken) => await GetMoviesHandlerAsync(repository, cancellationToken));
-        performanceApi.MapGet("/health", () => Results.Ok("API is healthy"));
+        
+        return endpoints;
+    }
+    
+    [RequiresDynamicCode("Calls Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet(String, Delegate)")]
+    [UnconditionalSuppressMessage("Trimming", "IL2026:Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code", Justification = "<Pending>")]
+    public static IEndpointRouteBuilder MapHealthEndpoint(this IEndpointRouteBuilder endpoints)
+    {
+        var healthGroup = endpoints.MapGroup("/api");
+
+        healthGroup.MapGet("/health", () => Results.Ok("API is healthy"));
         
         return endpoints;
     }

@@ -1,7 +1,7 @@
 using System.Text.Json;
-using WebApi.Performance.Core;
+using Dotnet.Performance.Core.Models;
 
-namespace WebApi.Performance.Infrastructure.Impl;
+namespace Dotnet.Performance.Infrastructure.Impl;
 
 internal class FileJsonMoviesRepository(string filePath) : IMoviesRepository
 {

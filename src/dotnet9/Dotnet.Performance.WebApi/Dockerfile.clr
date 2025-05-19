@@ -1,0 +1,24 @@
+﻿FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+USER $APP_UID
+WORKDIR /app
+EXPOSE 8080
+
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+COPY ["Dotnet.Performance.WebApi/Dotnet.Performance.WebApi.csproj", "src/Dotnet.Performance.WebApi/"]
+COPY ["Dotnet.Performance.Infrastructure/Dotnet.Performance.Infrastructure.csproj", "src/Dotnet.Performance.Infrastructure/"]
+COPY ["Dotnet.Performance.Core/Dotnet.Performance.Core.csproj", "src/Dotnet.Performance.Core/"]
+RUN dotnet restore "src/Dotnet.Performance.WebApi/Dotnet.Performance.WebApi.csproj"
+COPY . .
+WORKDIR "/src/Dotnet.Performance.WebApi"
+RUN dotnet build "./Dotnet.Performance.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "./Dotnet.Performance.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "Dotnet.Performance.WebApi.dll"]

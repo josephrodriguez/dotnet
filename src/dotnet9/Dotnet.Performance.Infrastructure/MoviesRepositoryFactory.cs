@@ -1,6 +1,6 @@
-using WebApi.Performance.Infrastructure.Impl;
+using Dotnet.Performance.Infrastructure.Impl;
 
-namespace WebApi.Performance.Infrastructure;
+namespace Dotnet.Performance.Infrastructure;
 
 public static class MoviesRepositoryFactory
 {

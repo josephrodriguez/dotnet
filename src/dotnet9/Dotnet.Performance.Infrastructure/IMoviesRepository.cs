@@ -1,6 +1,6 @@
-using WebApi.Performance.Core;
+using Dotnet.Performance.Core.Models;
 
-namespace WebApi.Performance.Infrastructure;
+namespace Dotnet.Performance.Infrastructure;
 
 public interface IMoviesRepository
 {

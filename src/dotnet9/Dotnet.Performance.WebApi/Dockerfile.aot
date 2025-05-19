@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG RUNTIME_IDENTIFIER
 WORKDIR /src
 COPY . .
@@ -14,7 +14,7 @@ RUN dotnet publish -c Release \
     /p:DebugSymbols=false \
     /p:RuntimeIdentifier=$RUNTIME_IDENTIFIER
 
-FROM mcr.microsoft.com/dotnet/runtime:8.0 AS final
+FROM mcr.microsoft.com/dotnet/runtime:9.0 AS final
 USER app
 WORKDIR /app
 COPY --from=build /app/publish .
